@@ -22,7 +22,7 @@ void cdeterminer_aps(int *fs,int nbsommet,int *&aps){
     *(aps+1)=1;
     for(int i=1;i<fs[0]+1;i++){
         if(fs[i]==0){
-            k[aps]=i+1;
+            aps[k]=i+1;
             k++;
         }
     }
@@ -96,10 +96,13 @@ int main()
     }*/
 
     int fs2[19] = {18,2,3,5,0,3,0,3,4,0,6,5,0,3,0,0,4,6,0};
-    int aps2[8]={};
+    int *pfs;
+    // La référence sur un pointeur doit être initialisée ! On crée un int * pour staisfaire lecompilateur
+    int *&aps2 = pfs;
+    pfs=fs2;
     cdeterminer_aps(fs2,7,aps2);
     for(int i=0;i<aps2[0];i++){
-        std::cout << aps[i] << std::endl;
+        std::cout << aps2[i] << std::endl;
     }
 
     return 0;
