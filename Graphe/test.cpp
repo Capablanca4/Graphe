@@ -44,14 +44,15 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
         REQUIRE_EQ(M,M2);
     }
 
-    SUBCASE("La fonction inverseFs_aps() est correcte"){
-        inverseFs_aps(fs,aps[0]);
+    SUBCASE("La fonction inverseFs() est correcte"){
+        inverseFs(fs,aps[0]);
         REQUIRE_EQ(fs,inv_fs);
     }
 
     SUBCASE("La fonction inverseAdj() est correcte"){
-    inverseAdj(M);
-    REQUIRE_EQ(M,inv_M);
+    std::vector<std::vector<int>> new_M;
+    inverseAdj(M,new_M);
+    REQUIRE_EQ(new_M,inv_M);
     }
 
 }

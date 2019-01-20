@@ -49,38 +49,26 @@ void adjVersFs_Aps(const std::vector<std::vector<int>>& M , std::vector<int>& fs
 
 /// On suppose la matrice M initialement vide
 void fs_apsVersAdj(const std::vector<int>& fs,const std::vector<int>& aps, std::vector<std::vector<int>>& M){
-    int n = aps[0];
-    int m=fs[0];
-    std::vector<int> A;
-    A.push_back(n);
-    A.push_back(m);
-    M.push_back(A);
+    int n=aps[0],m=fs[0];
+    M.push_back(std::vector<int>{n,m});
     for(int i=1;i<n+1;i++){
         std::vector<int> B;
         for(int j=0;j<n+1;j++){
             B.push_back(0);
         }
-        if(i==n){
-            for(int j=aps[n];j<fs[0];j++){
-                B[fs[j]]=1;
-            }
-        }
-        else{
-            for(int j=aps[i];j<aps[i+1]-1;j++){
-                B[fs[j]]=1;
-            }
+        for(int j=aps[i];j<(i==n ? fs[0]:aps[i+1]-1) ;j++){
+            B[fs[j]]=1;
         }
         M.push_back(B);
     }
 }
 
-void inverseFs_aps(std::vector<int>& fs,int nbsommet){
+void inverseFs(std::vector<int>& fs,int nbsommet){
     std::vector<std::vector<int>> mat{std::vector<int>{nbsommet}};
     for(int i=1;i<nbsommet;i++){
         mat.push_back(std::vector<int>{});
     }
-    int indicemat=1;
-    int indice=1;
+    int indicemat=1,indice=1;
     while(indice<=fs[0]){
         if(fs[indice]==0){
             indicemat++;
@@ -99,18 +87,15 @@ void inverseFs_aps(std::vector<int>& fs,int nbsommet){
     }
 }
 
-void inverseAdj(std::vector<std::vector<int>>& M){
+///On suppose new_M initialement vide
+void inverseAdj(std::vector<std::vector<int>> M,std::vector<std::vector<int>>& new_M){
     int n=M[0][0];
     int m=M[0][1];
-    std::vector<std::vector<int>> new_M;
     new_M.push_back(std::vector<int>{n,m});
     for(int i=1;i<n+1;i++){
         new_M.push_back(std::vector<int>{0});
-    }
-    for(int i=1;i<n+1;i++){
         for(int j=1;j<n+1;j++){
-            new_M[j].push_back(M[i][j]);
+            new_M[i].push_back(M[j][i]);
         }
     }
-    M=new_M;
 }

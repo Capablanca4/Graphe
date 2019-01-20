@@ -8,6 +8,6 @@ void adjVersFs_Aps(const std::vector<std::vector<int>>& M , std::vector<int>& fs
 
 void fs_apsVersAdj(const std::vector<int>& fs,const std::vector<int>& aps, std::vector<std::vector<int>>& M);
 
-void inverseFs_aps(std::vector<int>& fs,int nbsommet);
+void inverseFs(std::vector<int>& fs,int nbsommet);
 
-void inverseAdj(std::vector<std::vector<int>>& M);
+void inverseAdj(std::vector<std::vector<int>> M,std::vector<std::vector<int>>& new_M);

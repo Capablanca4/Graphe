@@ -71,23 +71,6 @@ int main()
                                    {0,0,0,0,0,0,0,0},
                                    {0,0,0,0,1,0,1,0} };
 
-    std::vector<std::vector<int>> M2{ {7,18},
-                                   {0,0,1,1,0,1,0,0},
-                                   {0,0,0,1,0,0,0,0},
-                                   {0,0,0,1,1,0,0,0},
-                                   {0,0,0,0,0,1,1,0},
-                                   {0,0,0,1,0,0,0,0},
-                                   {0,0,0,0,0,0,0,0},
-                                   {0,0,0,0,1,0,1,0} };
-
-    inverseAdj(M2); /// Test du fonctionnement de inverseAdj
-    for(int i=0;i<M2.size();i++){
-        for(int j=0;j<M2[i].size();j++){
-            std::cout << M2[i][j] << " ";
-        }
-        std::cout <<std::endl;
-    }
-
     /*int fs2[19] = {18,2,3,5,0,3,0,3,4,0,6,5,0,3,0,0,4,6,0};/// programme
     int *pfs;
     // La référence sur un pointeur doit être initialisée ! On crée un int * pour staisfaire lecompilateur
