@@ -50,9 +50,29 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
     }
 
     SUBCASE("La fonction inverseAdj() est correcte"){
-    std::vector<std::vector<int>> new_M;
-    inverseAdj(M,new_M);
-    REQUIRE_EQ(new_M,inv_M);
+        std::vector<std::vector<int>> new_M;
+        inverseAdj(M,new_M);
+        REQUIRE_EQ(new_M,inv_M);
+    }
+
+    SUBCASE("La fonction dist() est correcte"){
+        std::vector<int> rep{aps[0],0,1,1,2,1,3,-1};
+        std::vector<int> tdist{};
+        dist(fs,aps,1,tdist);
+        REQUIRE_EQ(rep,tdist);
+    }
+
+    SUBCASE("La fonction distance() est correcte"){
+        std::vector<std::vector<int>> rep{{aps[0],0,1,1,2,1,3,-1}};
+        std::vector<std::vector<int>> mdist{};
+        distance(fs,aps,mdist);
+        for(int i=0;i<mdist.size();i++){
+            for(int j=0;j<mdist[i].size();j++){
+                std::cout<<mdist[i][j]<<" ";
+            }
+            std::cout<<std::endl;
+        }
+        REQUIRE_EQ(rep,mdist);
     }
 
 }

@@ -10,4 +10,10 @@ void fs_apsVersAdj(const std::vector<int>& fs,const std::vector<int>& aps, std::
 
 void inverseFs(std::vector<int>& fs,int nbsommet);
 
-void inverseAdj(std::vector<std::vector<int>> M,std::vector<std::vector<int>>& new_M);
+void inverseAdj(std::vector<std::vector<int>> M,std::vector<std::vector<int>>& inv_M);
+
+void dist(std::vector<int>& fs, std::vector<int>& aps, int Sommet,std::vector<int>& tdist);
+
+void cdist(int *fs,int *aps, int Sommet, int *&tdist);
+
+void distance(std::vector<int>& fs, std::vector<int>& aps,std::vector<std::vector<int>>& mdist);

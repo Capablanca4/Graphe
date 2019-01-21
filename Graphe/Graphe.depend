@@ -9,10 +9,10 @@
 	<vector>
 	<climits>
 
-1547733582 source:\\uha.fr\users\e1603982\bureau\graphe-master\graphe\main.cpp
+1548089781 source:\\uha.fr\users\e1603982\bureau\graphe-master\graphe\main.cpp
 	<iostream>
 	<vector>
-	<climits>
+	"Graphe_algo.h"
 
 1547998765 source:c:\users\pierre vix\desktop\graphe-master\graphe\graphe_algo.cpp
 	<vector>
@@ -24,5 +24,8 @@
 	"Graphe_algo.h"
 
 1547997375 c:\users\pierre vix\desktop\graphe-master\graphe\graphe_algo.h
+	<vector>
+
+1548090446 \\uha.fr\users\e1603982\bureau\graphe-master\graphe\graphe_algo.h
 	<vector>
 

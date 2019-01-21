@@ -21,7 +21,7 @@ void appendSansDoublon(const int& x,std::vector<int>& vec){
     }
 }
 
-void dist(const std::vector<int>& fs,const std::vector<int>& aps,int sommet,std::vector<int>& dst){
+/*void dist(const std::vector<int>& fs,const std::vector<int>& aps,int sommet,std::vector<int>& dst){
     int d=0;
     ensemble X{0,1,std::vector<int>{sommet}};
     std::vector<int> vecY{};
@@ -53,8 +53,8 @@ void dist(const std::vector<int>& fs,const std::vector<int>& aps,int sommet,std:
         if(dst[i]==-1){
             dst[i]=INT_MAX;
         }
-    }*/
-}
+    }
+}*/
 
 int main()
 {

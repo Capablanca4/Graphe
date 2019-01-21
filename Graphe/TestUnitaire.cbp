@@ -34,6 +34,7 @@
 		</Compiler>
 		<Unit filename="Graphe_algo.cpp" />
 		<Unit filename="Graphe_algo.h" />
+		<Unit filename="doctest.h" />
 		<Unit filename="test.cpp" />
 		<Unit filename="testMain.cpp" />
 		<Extensions>
