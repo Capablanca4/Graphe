@@ -63,12 +63,33 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
     }
 
     SUBCASE("La fonction distance() est correcte"){
-        std::vector<std::vector<int>> rep{{aps[0],0,1,1,2,1,3,-1}};
+        std::vector<std::vector<int>> rep{{aps[0],fs[0]},
+                                          {aps[0], 0, 1, 1, 2, 1, 3,-1},
+                                          {aps[0],-1, 0, 1, 2, 3, 3,-1},
+                                          {aps[0],-1,-1, 0, 1, 2, 2,-1},
+                                          {aps[0],-1,-1, 2, 0, 1, 1,-1},
+                                          {aps[0],-1,-1, 1, 2, 0, 3,-1},
+                                          {aps[0],-1,-1,-1,-1,-1, 0,-1},
+                                          {aps[0],-1,-1, 3, 1, 2, 1, 0}};
+
+
         std::vector<std::vector<int>> mdist{};
         distance(fs,aps,mdist);
         for(int i=0;i<mdist.size();i++){
+            std::cout << "Size i= " << i << ", " << mdist[i].size() << std::endl;
             for(int j=0;j<mdist[i].size();j++){
                 std::cout<<mdist[i][j]<<" ";
+            }
+            std::cout<<std::endl;
+        }
+        if ( rep.size() == mdist.size() )
+             std::cout<< "EQUAL SIZE" << std::endl;
+        else
+            std::cout<< "rep SIZE= " << rep.size() << " mdist SIZE= " << mdist.size() <<std::endl;
+
+        for(int i=0;i<rep.size();i++){
+            for(int j=0;j<rep[i].size();j++){
+                std::cout<<rep[i][j]<<" ";
             }
             std::cout<<std::endl;
         }

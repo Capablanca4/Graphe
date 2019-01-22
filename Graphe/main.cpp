@@ -62,6 +62,8 @@ int main()
     std::vector<int> fs{18,2,3,5,0,3,0,3,4,0,5,6,0,3,0,0,4,6,0};
     std::vector<int> aps2{};
     std::vector<int> fs2{};
+    std::vector<int> la_dist{};
+    std::vector<int>&pdist = la_dist;
     const std::vector<std::vector<int>> M{ {7,18},
                                    {0,0,1,1,0,1,0,0},
                                    {0,0,0,1,0,0,0,0},
@@ -80,6 +82,8 @@ int main()
     for(int i=0;i<aps2[0];i++){
         std::cout << aps2[i] << std::endl;
     }*/
-
+    dist(fs,aps,1,pdist);
+    for(int i=0;i<pdist.size();i++)
+        std::cout << pdist[i] << std::endl;
     return 0;
 }
