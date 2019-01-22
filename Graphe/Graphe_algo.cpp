@@ -105,8 +105,11 @@ void dist(std::vector<int>& fs, std::vector<int>& aps, int Sommet,std::vector<in
     int t=0,q=1,p=1,d=0,nbSommet=aps[0];
     std::vector<int> fa{nbSommet,Sommet};
     tdist.push_back(nbSommet);
+    std::cout<<" nbSommet = "<<tdist[0]<<" ";
     for(int i=1;i<=nbSommet;i++){
+        std::cout<<tdist.size();
         tdist.push_back(-1);
+        std::cout<<"ok ";
     }
     tdist[Sommet]=0;
     while(t<q){
@@ -124,7 +127,6 @@ void dist(std::vector<int>& fs, std::vector<int>& aps, int Sommet,std::vector<in
         t=q;
         q=p;
     }
-    std::cout<<"hello ";
 }
 
 ///On suppose tdist initialement vide
@@ -158,13 +160,12 @@ void cdist(int *fs,int *aps, int Sommet, int *&tdist){
 
 ///On suppose mdist initialement vide
 void distance(std::vector<int>& fs, std::vector<int>& aps,std::vector<std::vector<int>>& mdist){
+    std::cout<<std::endl<< "Prog distance :";
     int n=aps[0],m=fs[0];
     mdist.push_back(std::vector<int>{n,m});
     for(int i=1;i<=n;i++){
         std::vector<int> tdist{};
-        std::cout<<"ok1 ";
         dist(fs,aps,i,tdist); /// Bon ca bug par ici maid je ne vois pas pourquoi ?
-        std::cout<<"ok2 ";
         mdist.push_back(tdist);
     }
 }
