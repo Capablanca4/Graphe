@@ -69,9 +69,8 @@
 	<io.h>
 	<sys/time.h>
 
-1548178816 source:c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.cpp
+1548598989 source:c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.cpp
 	<vector>
-	<iostream>
 
 1548178816 source:c:\users\pierre vix\desktop\git\graphe\graphe\testmain.cpp
 	"doctest.h"
@@ -115,4 +114,23 @@
 	<Windows.h>
 	<io.h>
 	<sys/time.h>
+
+1548603297 source:c:\users\pierre vix\desktop\git\graphe\graphe\test.cpp
+	"doctest.h"
+	"Graphe_algo.h"
+	<iostream>
+
+1548178816 c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.h
+	<vector>
+
+1548602423 source:c:\users\pierre vix\desktop\git\graphe\graphe\src\matriceadjacence.cpp
+	"MatriceAdjacence.h"
+
+1548603883 source:c:\users\pierre vix\desktop\git\graphe\graphe\testmatriceadjacence.cpp
+	"doctest.h"
+	"MatriceAdjacence.h"
+	<iostream>
+
+1548602414 c:\users\pierre vix\desktop\git\graphe\graphe\include\matriceadjacence.h
+	<vector>
 

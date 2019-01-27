@@ -30,6 +30,19 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
         REQUIRE_EQ(aps,aps2);
     }
 
+    SUBCASE("La fonction cdeterminer_aps() est correcte"){
+        int *base_aps;
+        int *&aps2 = base_aps;
+        int *base_fs = new int[fs.size()];
+        for (int i=0;i<fs.size();i++)  base_fs[i]=fs[i];
+        cdeterminer_aps(base_fs,7,aps2);
+        bool test_egalite=true;
+        for(int i =0;i<aps.size()&&test_egalite;i++)  test_egalite=(aps2[i]==aps[i]);
+        REQUIRE_FALSE(!test_egalite);
+        delete[] aps2;
+        delete[] base_fs;
+    }
+
     SUBCASE("La fonction adjVersFs_Aps() est correcte"){
         std::vector<int> aps2{};///futur aps
         std::vector<int> fs2{};///futur fs
@@ -75,24 +88,7 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
 
         std::vector<std::vector<int>> mdist{};
         distance(fs,aps,mdist);
-        for(int i=0;i<mdist.size();i++){
-            std::cout << "Size i= " << i << ", " << mdist[i].size() << std::endl;
-            for(int j=0;j<mdist[i].size();j++){
-                std::cout<<mdist[i][j]<<" ";
-            }
-            std::cout<<std::endl;
-        }
-        if ( rep.size() == mdist.size() )
-             std::cout<< "EQUAL SIZE" << std::endl;
-        else
-            std::cout<< "rep SIZE= " << rep.size() << " mdist SIZE= " << mdist.size() <<std::endl;
-
-        for(int i=0;i<rep.size();i++){
-            for(int j=0;j<rep[i].size();j++){
-                std::cout<<rep[i][j]<<" ";
-            }
-            std::cout<<std::endl;
-        }
+        //std::cout << "rep.size =" << rep.size() << " mdist.size = " << mdist.size() << std::endl;
         REQUIRE_EQ(rep,mdist);
     }
 
