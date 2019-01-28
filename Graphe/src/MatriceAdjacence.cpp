@@ -1,4 +1,5 @@
 #include "MatriceAdjacence.h"
+#include <iostream>
 
 namespace Graphe{
 
@@ -45,8 +46,10 @@ std::vector<int> MatriceAdjacence::Noeud(int noeud){
 }
 
 void MatriceAdjacence::AjouteElement(int noeudDep,int noeudArr){
-    d_matrice[noeudDep-1][noeudArr-1]=1;
-    d_nbArc++;
+    if(!d_matrice[noeudDep-1][noeudArr-1]){
+        d_matrice[noeudDep-1][noeudArr-1]=1;
+        d_nbArc++;
+    }
 }
 
 void MatriceAdjacence::AjouteNoeud(){
@@ -60,6 +63,7 @@ void MatriceAdjacence::AjouteNoeud(){
 void MatriceAdjacence::inverseAdj(){
     std::vector<std::vector<int>> M{};
     for(int i=0;i<d_nbNoeud;i++){
+        M.push_back(std::vector<int>{});
         for(int j=0;j<d_nbNoeud;j++){
             M[i].push_back(d_matrice[j][i]);
         }
