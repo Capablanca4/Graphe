@@ -69,8 +69,9 @@
 	<io.h>
 	<sys/time.h>
 
-1548598989 source:c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.cpp
+1548779668 source:c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.cpp
 	<vector>
+	<iostream>
 
 1548178816 source:c:\users\pierre vix\desktop\git\graphe\graphe\testmain.cpp
 	"doctest.h"
@@ -115,13 +116,14 @@
 	<io.h>
 	<sys/time.h>
 
-1548708370 source:c:\users\pierre vix\desktop\git\graphe\graphe\test.cpp
+1548777345 source:c:\users\pierre vix\desktop\git\graphe\graphe\test.cpp
 	"doctest.h"
 	"Graphe_algo.h"
 	<iostream>
 
-1548178816 c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.h
+1548858011 c:\users\pierre vix\desktop\git\graphe\graphe\graphe_algo.h
 	<vector>
+	"PileChainee.h"
 
 1548710469 source:c:\users\pierre vix\desktop\git\graphe\graphe\src\matriceadjacence.cpp
 	"MatriceAdjacence.h"
@@ -134,4 +136,19 @@
 
 1548602414 c:\users\pierre vix\desktop\git\graphe\graphe\include\matriceadjacence.h
 	<vector>
+
+1548712181 source:c:\users\pierre vix\desktop\git\graphe\graphe\src\fsaps.cpp
+	"FsAps.h"
+
+1548711425 c:\users\pierre vix\desktop\git\graphe\graphe\include\fsaps.h
+	<vector>
+
+1548854087 source:c:\users\pierre vix\desktop\git\graphe\graphe\src\pilechainee.cpp
+	"PileChainee.h"
+
+1548853365 c:\users\pierre vix\desktop\git\graphe\graphe\include\pilechainee.h
+
+1548854653 source:c:\users\pierre vix\desktop\git\graphe\graphe\testpilechainee.cpp
+	"doctest.h"
+	"PileChainee.h"
 

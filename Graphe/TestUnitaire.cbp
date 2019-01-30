@@ -39,11 +39,14 @@
 		<Unit filename="doctest.h" />
 		<Unit filename="include/FsAps.h" />
 		<Unit filename="include/MatriceAdjacence.h" />
+		<Unit filename="include/PileChainee.h" />
 		<Unit filename="src/FsAps.cpp" />
 		<Unit filename="src/MatriceAdjacence.cpp" />
+		<Unit filename="src/PileChainee.cpp" />
 		<Unit filename="test.cpp" />
 		<Unit filename="testMain.cpp" />
 		<Unit filename="testMatriceAdjacence.cpp" />
+		<Unit filename="testPileChainee.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

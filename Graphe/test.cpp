@@ -6,7 +6,8 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
 
     std::vector<int> aps{7,1,5,7,10,13,15,16};
     std::vector<int> fs{18,2,3,5,0,3,0,3,4,0,5,6,0,3,0,0,4,6,0};
-    std::vector<int> inv_fs{18,0,1,0,1,2,3,5,0,3,7,0,1,4,0,4,7,0,0};
+    std::vector<int> fpp{18,0,1,0,1,2,3,5,0,3,7,0,1,4,0,4,7,0,0};
+    std::vector<int> app{7,1,2,4,9,12,15,18};
     std::vector<std::vector<int>> M{ {7,18},
                                    {0,0,1,1,0,1,0,0},
                                    {0,0,0,1,0,0,0,0},
@@ -34,32 +35,33 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
         int *base_aps;
         int *&aps2 = base_aps;
         int *base_fs = new int[fs.size()];
-        for (int i=0;i<fs.size();i++)  base_fs[i]=fs[i];
+        for (unsigned int i=0;i<fs.size();i++)  base_fs[i]=fs[i];
         cdeterminer_aps(base_fs,7,aps2);
         bool test_egalite=true;
-        for(int i =0;i<aps.size()&&test_egalite;i++)  test_egalite=(aps2[i]==aps[i]);
+        for(unsigned int i =0;i<aps.size()&&test_egalite;i++)  test_egalite=(aps2[i]==aps[i]);
         REQUIRE_FALSE(!test_egalite);
         delete[] aps2;
         delete[] base_fs;
     }
 
     SUBCASE("La fonction adjVersFs_Aps() est correcte"){
-        std::vector<int> aps2{};///futur aps
-        std::vector<int> fs2{};///futur fs
+        std::vector<int> aps2{};
+        std::vector<int> fs2{};
         adjVersFs_Aps(M,fs2,aps2);
         REQUIRE_EQ(fs,fs2);
         REQUIRE_EQ(aps,aps2);
     }
 
     SUBCASE("La fonction fs_apsVersAdj() est correcte"){
-        std::vector<std::vector<int>> M2{}; /// futur M
+        std::vector<std::vector<int>> M2{};
         fs_apsVersAdj(fs,aps,M2);
         REQUIRE_EQ(M,M2);
     }
 
-    SUBCASE("La fonction inverseFs() est correcte"){
-        inverseFs(fs,aps[0]);
-        REQUIRE_EQ(fs,inv_fs);
+    SUBCASE("La fonction inverseFsAps() est correcte"){
+        inverseFsAps(fs,aps,aps[0]);
+        REQUIRE_EQ(fs,fpp);
+        ///REQUIRE_EQ(aps,app); /// Ne marche pas !!!
     }
 
     SUBCASE("La fonction inverseAdj() est correcte"){
@@ -88,8 +90,26 @@ TEST_CASE("Les fonctions fonctionnent correctement"){
 
         std::vector<std::vector<int>> mdist{};
         distance(fs,aps,mdist);
-        //std::cout << "rep.size =" << rep.size() << " mdist.size = " << mdist.size() << std::endl;
         REQUIRE_EQ(rep,mdist);
     }*/
 
+    SUBCASE("La fonction cdet_ddi() est correcte"){
+
+    }
+
+    SUBCASE("La fonction det_ddi() est correcte"){
+        std::vector<int> rep{aps[0],0,1,4,2,2,2,0};
+        std::vector<int> ddi;
+        det_ddi(fs,aps[0],ddi);
+        REQUIRE_EQ(rep,ddi);
+    }
+
+    SUBCASE("La fonction det_app() est correcte"){
+        std::vector<int> rep{};
+        std::vector<int> app2;
+        std::vector<int> ddi;
+        det_ddi(fs,aps[0],ddi);
+        det_app(ddi,app2);
+        REQUIRE_EQ(app2,app);
+    }
 }
