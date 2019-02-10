@@ -1,4 +1,6 @@
 #include "MatriceAdjacence.h"
+#include <iostream>
+#include <utility>
 
 namespace Graphe{
 
@@ -40,16 +42,18 @@ int MatriceAdjacence::nbArc(){
     return d_nbArc;
 }
 
-std::vector<int> MatriceAdjacence::Noeud(int noeud){
+std::vector<int> MatriceAdjacence::noeud(int noeud){
     return d_matrice[noeud-1];
 }
 
-void MatriceAdjacence::AjouteElement(int noeudDep,int noeudArr){
-    d_matrice[noeudDep-1][noeudArr-1]=1;
-    d_nbArc++;
+void MatriceAdjacence::ajouteElement(int noeudDep,int noeudArr){
+    if(!d_matrice[noeudDep-1][noeudArr-1]){
+        d_matrice[noeudDep-1][noeudArr-1]=1;
+        d_nbArc++;
+    }
 }
 
-void MatriceAdjacence::AjouteNoeud(){
+void MatriceAdjacence::ajouteNoeud(){
     for(unsigned int i=0;i<d_matrice.size();i++)  d_matrice[i].push_back(0);
     d_nbNoeud++;
     std::vector<int>* ptr = new std::vector<int>{};
@@ -57,14 +61,38 @@ void MatriceAdjacence::AjouteNoeud(){
     d_matrice.push_back(*ptr);
 }
 
+void MatriceAdjacence::supprimeNoeud(int noeud){
+    for(int i=noeud-1;i<d_nbNoeud-1;i++){
+        d_matrice[i]=d_matrice[i+1];
+    }
+    d_matrice.pop_back();
+    for(int i=0;i<d_nbNoeud-1;i++){
+        for(int j=noeud-1;j<d_nbNoeud-1;j++){
+            d_matrice[i][j]=d_matrice[i][j+1];
+        }
+        d_matrice[i].pop_back();
+    }
+    d_nbNoeud--;
+}
+
 void MatriceAdjacence::inverseAdj(){
     std::vector<std::vector<int>> M{};
     for(int i=0;i<d_nbNoeud;i++){
+        M.push_back(std::vector<int>{});
         for(int j=0;j<d_nbNoeud;j++){
             M[i].push_back(d_matrice[j][i]);
         }
     }
     d_matrice=M;
+}
+
+void MatriceAdjacence::afficheMat(){
+    for(int i=1;i<=d_nbNoeud;i++){
+        for(int j=0;j<d_nbNoeud;j++) {
+            std::cout<<d_matrice[i][j]<<" ";
+        }
+        std::cout<<std::endl;
+    }
 }
 
 }

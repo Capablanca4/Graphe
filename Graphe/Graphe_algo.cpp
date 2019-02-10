@@ -1,4 +1,6 @@
 #include <vector>
+#include <iostream>
+#include "Graphe_algo.h"
 
 /// fs = liste des liens entre les différents sommet
 /// aps = liste des indices indiquant dans fs l'indice où commence un nouveau sommet
@@ -25,13 +27,13 @@ void cdeterminer_aps(int *fs,int nbsommet,int *&aps){
         }
     }
 }
+
 /// On suppose que les vecteur fs et aps sont initialement vide
 void adjVersFs_Aps(const std::vector<std::vector<int>>& M , std::vector<int>& fs, std::vector<int>& aps){
     int n=M[0][0];
     int m=M[0][1];
     fs.push_back(m);
     aps.push_back(n);
-
     int k=1;
     for(int i=1;i<=n;i++){
         aps.push_back(k);
@@ -46,15 +48,30 @@ void adjVersFs_Aps(const std::vector<std::vector<int>>& M , std::vector<int>& fs
     }
 }
 
+void cfs_apsVersAdj(int *fs,int *aps,int **&A){
+    int n=aps[0],m=fs[0]-n,j;
+    A=new int*[n+1];
+    for(int i=1;i<=n;i++)  A[i]=new int[n+1];
+    A[0]=new int[2];
+    A[0][0]=n;
+    A[0][1]=m;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=n;j++){
+            A[i][j]=0;
+        }
+        for(int k=aps[0];(j=fs[k])!=0;k++){
+            A[i][j]=1;
+        }
+    }
+}
+
 /// On suppose la matrice M initialement vide
 void fs_apsVersAdj(const std::vector<int>& fs,const std::vector<int>& aps, std::vector<std::vector<int>>& M){
     int n=aps[0],m=fs[0];
     M.push_back(std::vector<int>{n,m});
     for(int i=1;i<=n;i++){
         std::vector<int> B;
-        for(int j=0;j<n+1;j++){
-            B.push_back(0);
-        }
+        for(int j=0;j<n+1;j++)  B.push_back(0);
         for(int j=aps[i];j<(i==n ? fs[0]:aps[i+1]-1) ;j++){/// modifiable
             B[fs[j]]=1;
         }
@@ -62,24 +79,21 @@ void fs_apsVersAdj(const std::vector<int>& fs,const std::vector<int>& aps, std::
     }
 }
 
-void inverseFs(std::vector<int>& fs,int nbsommet){
+void inverseFsAps(std::vector<int>& fs, std::vector<int>& aps ,int nbsommet){
     std::vector<std::vector<int>> mat{std::vector<int>{nbsommet}};
     for(int i=1;i<nbsommet;i++){
         mat.push_back(std::vector<int>{});
     }
     int indicemat=1,indice=1;
     while(indice<=fs[0]){
-        if(fs[indice]==0){
-            indicemat++;
-        }
-        else{
-            mat[fs[indice]].push_back(indicemat);
-        }
+        if(fs[indice]==0)  indicemat++;
+        else  mat[fs[indice]].push_back(indicemat);
         indice++;
     }
     indice=1;
     for(unsigned int i=1;i<mat.size();i++){
         mat[i].push_back(0);
+        aps[i]=indice;///ne marche pas !!
         for(unsigned int j=0;j<mat[i].size();j++){
             fs[indice++]=mat[i][j];
         }
@@ -104,9 +118,7 @@ void dist(std::vector<int>& fs, std::vector<int>& aps, int Sommet,std::vector<in
     int t=0,q=1,p=1,d=0,nbSommet=aps[0];
     std::vector<int> fa{nbSommet,Sommet};
     tdist.push_back(nbSommet);
-    for(int i=1;i<=nbSommet;i++){
-        tdist.push_back(-1);
-    }
+    for(int i=1;i<=nbSommet;i++)  tdist.push_back(-1);
     tdist[Sommet]=0;
     while(t<q){
         d++;
@@ -132,9 +144,7 @@ void cdist(int *fs,int *aps, int Sommet, int *&tdist){
     fa[1]=Sommet;fa[0]=nbSommet;
     tdist=new int[nbSommet+1];
     tdist[0]=nbSommet;
-    for(int i=1;i<=nbSommet;i++){
-        tdist[i]=-1;
-    }
+    for(int i=1;i<=nbSommet;i++)  tdist[i]--;
     tdist[Sommet]=0;
     while(t<q){
         d++;
@@ -163,4 +173,103 @@ void distance(std::vector<int>& fs, std::vector<int>& aps,std::vector<std::vecto
         dist(fs,aps,i,tdist);
         mdist.push_back(tdist);
     }
+}
+
+///On suppose ddi initialement vide
+void cdet_ddi(int *fs,int nbSommet, int *&ddi){
+    ddi=new int[nbSommet+1];
+    for(int i=0;i<=nbSommet;i++)  ddi[i]=0;
+    for(int i=1;i<=fs[0];i++)  ddi[fs[i]]++;
+}
+
+///On suppose ddi initialement vide
+void det_ddi(const std::vector<int>& fs,int nbSommet, std::vector<int>& ddi){
+    for(int i=0;i<=nbSommet;i++)  ddi.push_back(0);
+    for(int i=1;i<=fs[0];i++) ddi[fs[i]]++;
+}
+
+///On suppose app initialement vide
+void cdet_app(int *ddi,int *&app){
+    int nbSommet=ddi[0];
+    app=new int[nbSommet+1];
+    for(int i=0;i<=nbSommet;i++) app[i]=0;
+    app[0]=nbSommet;
+    app[1]=1;
+    for(int i=2;i<=nbSommet;i++)  app[i]=app[i-1]+1+ddi[i-1];
+}
+
+///On suppose app initialement vide
+void det_app(const std::vector<int>& ddi,std::vector<int>& app){
+    int nbSommet=ddi[0];
+    app.push_back(nbSommet);
+    app.push_back(1);
+    for(int i=2;i<=nbSommet;i++) app.push_back(0);
+    for(int i=2;i<=nbSommet;i++)  app[i]=app[i-1]+1+ddi[i-1];
+
+}
+
+///On suppose app et fp initialement vide
+void fs_apsVersfp_app(int *fs,int *aps,int *&fp,int *&app){ /// Fonction étrange et à tester
+    int *ddi,nbSommet=aps[0],k;
+    cdet_ddi(fs,nbSommet,ddi);
+    cdet_app(ddi,app);
+    fp=new int[fs[0]];
+    fp[0]=fs[0];
+    for(int i=1;i<fs[0];i++) fs[i]=0;
+    for(int i=1;i<=nbSommet;i++){
+        for(int j=aps[i];(j=fs[k])!=0;k++){
+            fp[app[j]++]=i;
+        }
+    }
+    for(int i=1;i<=nbSommet;i++)  fp[app[i]]=0;
+    for(int i=nbSommet;i>1;i--)  app[i]=app[i-1]+1;
+    app[1]=1;
+    delete[] ddi;
+}
+
+/// On suppose cfc et prem initialement vide
+/*void det_CFC(const std::vector<std::vector<int>> tdist,std::vector<int> prem,Graphe::PileChainee pilch,std::vector<int> cfc){
+    int nbSommet=tdist[0][0],nb=0;
+    for(int i=0;i<=nbSommet;i++) cfc.push_back(0);
+    for(int i=0;i<nbSommet;i++){
+        if(cfc[i]==0){
+            nb++;
+            prem.push_back(i);
+            int l=i,cfc[i]=nb;
+            for(int j=i+1;j<nbSommet){
+                if(tdist[i][j]!=-1&&tdist[j][i]!=-1){
+                    pilch.pile(l)=j;
+                    l=j;
+                    cfc[j]=nb;
+                }
+                pilch.pile(l)=0;
+            }
+        }
+    }
+}*/
+
+void det_CFC(int **tdist,int *&prem,int *&pilch,int *&cfc){
+    int n=tdist[0][0],l=0,nb=0;
+    prem= new int[n+1];
+    pilch= new int[n+1];
+    cfc=new int[n+1];
+    for(int i=1;i<=n;i++)  cfc[i]=0;
+    cfc[0]=n;
+    for(int i=1;i<=n;i++){
+        if(cfc[i]==0){
+            nb++;
+            prem[nb]=i;
+            cfc[i]=nb;
+            l=i;
+            for(int j=i+1;j<=n;j++){
+                if((cfc[j]!=0)&&(tdist[i][j]!=-1)&&(tdist[j][i]!=-1)){
+                    pilch[l]=j;
+                    cfc[j]=nb;
+                    l=j;
+                }
+            }
+            pilch[l]=0;
+        }
+    }
+    prem[0]=nb;
 }
