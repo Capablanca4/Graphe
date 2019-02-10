@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -34,9 +36,18 @@
 		</Compiler>
 		<Unit filename="Graphe_algo.cpp" />
 		<Unit filename="Graphe_algo.h" />
+		<Unit filename="TestFsAps.cpp" />
 		<Unit filename="doctest.h" />
+		<Unit filename="include/FsAps.h" />
+		<Unit filename="include/MatriceAdjacence.h" />
+		<Unit filename="include/PileChainee.h" />
+		<Unit filename="src/FsAps.cpp" />
+		<Unit filename="src/MatriceAdjacence.cpp" />
+		<Unit filename="src/PileChainee.cpp" />
 		<Unit filename="test.cpp" />
 		<Unit filename="testMain.cpp" />
+		<Unit filename="testMatriceAdjacence.cpp" />
+		<Unit filename="testPileChainee.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
