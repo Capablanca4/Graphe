@@ -16,16 +16,14 @@ class MatriceAdjacence
         /// Getteur
         int nbNoeud();
         int nbArc();
-        std::vector<int> noeud(int noeud);
+        std::vector<int> Noeud(int noeud);
 
         /// Setteur
-        void ajouteElement(int noeudDep,int noeudArr);
-        void ajouteNoeud();
-        void supprimeNoeud(int noeud);
+        void AjouteElement(int noeudDep,int noeudArr);
+        void AjouteNoeud();
 
         /// Methode
         void inverseAdj();
-        void afficheMat();
 
     private:
         std::vector<std::vector<int>> d_matrice;

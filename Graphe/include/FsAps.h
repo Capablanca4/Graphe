@@ -12,16 +12,11 @@ class FsAps
         FsAps(int nbNoeud,const std::vector<int>& fs);
         ~FsAps();
 
-        ///Accesseur
-        int NbNoeud();
-        int NbArc();
-        int Fs(int i);
-        int Aps(int i);
 
 
     private:
-        int d_tailleFs;
-        int d_tailleAps;
+        int d_nbNoeud;
+        int d_nbArc;
         std::vector<int> d_fs;
         std::vector<int> d_aps;
 

@@ -1,6 +1,5 @@
 #include <vector>
 #include <iostream>
-#include "Graphe_algo.h"
 
 /// fs = liste des liens entre les différents sommet
 /// aps = liste des indices indiquant dans fs l'indice où commence un nouveau sommet
@@ -27,7 +26,6 @@ void cdeterminer_aps(int *fs,int nbsommet,int *&aps){
         }
     }
 }
-
 /// On suppose que les vecteur fs et aps sont initialement vide
 void adjVersFs_Aps(const std::vector<std::vector<int>>& M , std::vector<int>& fs, std::vector<int>& aps){
     int n=M[0][0];
@@ -45,23 +43,6 @@ void adjVersFs_Aps(const std::vector<std::vector<int>>& M , std::vector<int>& fs
         }
     fs.push_back(0);
     k++;
-    }
-}
-
-void cfs_apsVersAdj(int *fs,int *aps,int **&A){
-    int n=aps[0],m=fs[0]-n,j;
-    A=new int*[n+1];
-    for(int i=1;i<=n;i++)  A[i]=new int[n+1];
-    A[0]=new int[2];
-    A[0][0]=n;
-    A[0][1]=m;
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=n;j++){
-            A[i][j]=0;
-        }
-        for(int k=aps[0];(j=fs[k])!=0;k++){
-            A[i][j]=1;
-        }
     }
 }
 
@@ -209,7 +190,7 @@ void det_app(const std::vector<int>& ddi,std::vector<int>& app){
 }
 
 ///On suppose app et fp initialement vide
-void fs_apsVersfp_app(int *fs,int *aps,int *&fp,int *&app){ /// Fonction étrange et à tester
+void fs_apsVersfpp_app(int *fs,int *aps,int *&fp,int *&app){
     int *ddi,nbSommet=aps[0],k;
     cdet_ddi(fs,nbSommet,ddi);
     cdet_app(ddi,app);
@@ -225,51 +206,4 @@ void fs_apsVersfp_app(int *fs,int *aps,int *&fp,int *&app){ /// Fonction étrange
     for(int i=nbSommet;i>1;i--)  app[i]=app[i-1]+1;
     app[1]=1;
     delete[] ddi;
-}
-
-/// On suppose cfc et prem initialement vide
-/*void det_CFC(const std::vector<std::vector<int>> tdist,std::vector<int> prem,Graphe::PileChainee pilch,std::vector<int> cfc){
-    int nbSommet=tdist[0][0],nb=0;
-    for(int i=0;i<=nbSommet;i++) cfc.push_back(0);
-    for(int i=0;i<nbSommet;i++){
-        if(cfc[i]==0){
-            nb++;
-            prem.push_back(i);
-            int l=i,cfc[i]=nb;
-            for(int j=i+1;j<nbSommet){
-                if(tdist[i][j]!=-1&&tdist[j][i]!=-1){
-                    pilch.pile(l)=j;
-                    l=j;
-                    cfc[j]=nb;
-                }
-                pilch.pile(l)=0;
-            }
-        }
-    }
-}*/
-
-void det_CFC(int **tdist,int *&prem,int *&pilch,int *&cfc){
-    int n=tdist[0][0],l=0,nb=0;
-    prem= new int[n+1];
-    pilch= new int[n+1];
-    cfc=new int[n+1];
-    for(int i=1;i<=n;i++)  cfc[i]=0;
-    cfc[0]=n;
-    for(int i=1;i<=n;i++){
-        if(cfc[i]==0){
-            nb++;
-            prem[nb]=i;
-            cfc[i]=nb;
-            l=i;
-            for(int j=i+1;j<=n;j++){
-                if((cfc[j]!=0)&&(tdist[i][j]!=-1)&&(tdist[j][i]!=-1)){
-                    pilch[l]=j;
-                    cfc[j]=nb;
-                    l=j;
-                }
-            }
-            pilch[l]=0;
-        }
-    }
-    prem[0]=nb;
 }
