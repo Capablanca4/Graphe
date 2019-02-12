@@ -207,3 +207,28 @@ void fs_apsVersfpp_app(int *fs,int *aps,int *&fp,int *&app){
     app[1]=1;
     delete[] ddi;
 }
+
+///On suppose fsr et apsr initialement vide
+void graphe_reduit(int* fs,int* aps,int* prem,int* pilch,int* cfc,int*& fsr,int*& apsr){
+    int n=aps[0],nbc=prem[0],kr=1,s,t;
+    bool* dejaMis= new bool[n+1];
+    fsr=new int[fs[0]+1];
+    apsr=new int[nbc+1];
+    apsr[0]=nbc;
+    for(int c=1;c<=nbc;c++){
+        apsr[c]=kr;
+        s=prem[c];
+        while(s!=0){
+            for(int k=aps[s];(t=fs[k])!=0;k++){
+                if(!dejaMis[cfc[t]]){
+                    fsr[kr++]=cfc[t];
+                    dejaMis[cfc[t]]=true;
+                }
+            }
+            s=pilch[s];
+        }
+        fsr[kr++]=0;
+    }
+    fsr[0]=kr-1;
+    delete[] dejaMis;
+}

@@ -27,3 +27,5 @@ void cdet_app(int *ddi,int *&app);
 void det_app(const std::vector<int>& ddi,std::vector<int>& app);
 
 void fs_apsVersfpp_app(int *fs,int *aps,int *&app);
+
+void graphe_reduit(int* fs,int* aps,int* prem,int* pilch,int* cfc,int*& fsr,int*& apsr);

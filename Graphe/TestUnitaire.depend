@@ -142,3 +142,84 @@
 1548711425 c:\users\pierre vix\desktop\git\graphe\graphe\include\fsaps.h
 	<vector>
 
+1549965924 source:\\uha.fr\users\e1603982\bureau\graphe\src\fsaps.cpp
+	"FsAps.h"
+
+1549965923 \\uha.fr\users\e1603982\bureau\graphe\include\fsaps.h
+	<vector>
+
+1549965924 source:\\uha.fr\users\e1603982\bureau\graphe\src\matriceadjacence.cpp
+	"MatriceAdjacence.h"
+	<iostream>
+
+1549965923 \\uha.fr\users\e1603982\bureau\graphe\include\matriceadjacence.h
+	<vector>
+
+1549965924 source:\\uha.fr\users\e1603982\bureau\graphe\src\pilechainee.cpp
+	"PileChainee.h"
+	"PileChainee.h"
+
+1549965923 \\uha.fr\users\e1603982\bureau\graphe\include\pilechainee.h
+
+1549965922 source:\\uha.fr\users\e1603982\bureau\graphe\test.cpp
+	"doctest.h"
+	"Graphe_algo.h"
+	<iostream>
+
+1549965922 \\uha.fr\users\e1603982\bureau\graphe\doctest.h
+	<ciso646>
+	<iosfwd>
+	<cstddef>
+	<type_traits>
+	"doctest_fwd.h"
+	<ctime>
+	<cmath>
+	<climits>
+	<math.h>
+	<new>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<limits>
+	<utility>
+	<sstream>
+	<iostream>
+	<algorithm>
+	<iomanip>
+	<vector>
+	<atomic>
+	<mutex>
+	<set>
+	<map>
+	<exception>
+	<stdexcept>
+	<csignal>
+	<cfloat>
+	<cctype>
+	<cstdint>
+	<sys/types.h>
+	<unistd.h>
+	<sys/sysctl.h>
+	<unistd.h>
+	<AfxWin.h>
+	<Windows.h>
+	<io.h>
+	<sys/time.h>
+
+1549966766 \\uha.fr\users\e1603982\bureau\graphe\graphe_algo.h
+	<vector>
+
+1549965923 source:\\uha.fr\users\e1603982\bureau\graphe\testmain.cpp
+	"doctest.h"
+
+1549965923 source:\\uha.fr\users\e1603982\bureau\graphe\testmatriceadjacence.cpp
+	"doctest.h"
+	"MatriceAdjacence.h"
+	<iostream>
+
+1549965923 source:\\uha.fr\users\e1603982\bureau\graphe\testpilechainee.cpp
+	"doctest.h"
+	"PileChainee.h"
+	"doctest.h"
+	"PileChainee.h"
+
